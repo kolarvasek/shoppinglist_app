@@ -1,10 +1,13 @@
+*.dart linguist-language=Dart
 *.cpp linguist-vendored
 *.h linguist-vendored
 *.cc linguist-vendored
 *.c linguist-vendored
 *.hpp linguist-vendored
 *.cmake linguist-vendored
+CMakeLists.txt linguist-vendored
 *.ruby linguist-vendored
+*.rb linguist-vendored
 *.swift linguist-vendored
 *.html linguist-vendored
 *.kt linguist-vendored
