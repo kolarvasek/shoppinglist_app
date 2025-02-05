@@ -31,8 +31,10 @@ class _LoginPageState extends State<LoginPage> {
 
       Navigator.pop(context);
       print("Successfully logged in!");
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const HomePage()));
+      if (context.mounted) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       String errorMessage;
@@ -63,83 +65,82 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.person,
-                  size: 60,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Text(
-                  'Sign in',
-                  style: TextStyle(fontSize: 25, letterSpacing: 12),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                MyTextField(
-                  controller: emailController,
-                  hintText: "Email",
-                  obscureText: false,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                MyTextField(
-                  controller: passwordController,
-                  hintText: "Password",
-                  obscureText: true,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      "Forgot password?",
-                      style: TextStyle(color: Colors.grey[400]),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                MyButton(
-                  text: "Submit",
-                  onTap: loginUser,
-                ),
-                SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't have an account? ",
-                      style: TextStyle(color: Colors.black),
-                    ),
-                    GestureDetector(
-                      onTap: widget.onTap,
-                      child: Text(
-                        'Register here',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.person,
+                size: 60,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                'Sign in',
+                style: TextStyle(fontSize: 25, letterSpacing: 12),
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              MyTextField(
+                controller: emailController,
+                hintText: "Email",
+                obscureText: false,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              MyTextField(
+                controller: passwordController,
+                hintText: "Password",
+                obscureText: true,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    "Forgot password?",
+                    style: TextStyle(color: Colors.grey[400]),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              MyButton(
+                text: "Submit",
+                onTap: loginUser,
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Don't have an account? ",
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  GestureDetector(
+                    onTap: widget.onTap,
+                    child: Text(
+                      'Register here',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ],
-                )
-              ],
-            ),
+                  ),
+                ],
+              )
+            ],
           ),
         ),
-    
-      );
-      }
+      ),
+    );
+  }
 }

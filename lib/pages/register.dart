@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shoppinglist/components/submitButton.dart';
 import 'package:shoppinglist/components/textField.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
@@ -21,20 +21,10 @@ class _RegisterPageState extends State<RegisterPage> {
   void registerUser() async {
     showDialog(
       context: context,
-      builder: (context) => const Center(child: CircularProgressIndicator()),
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
     );
-
-    if (passwordController.text != confirmPwController.text) {
-      Navigator.pop(context);
-      showDialog(
-        context: context,
-        builder: (context) => const AlertDialog(
-          title: Text("Error"),
-          content: Text("Passwords don't match"),
-        ),
-      );
-      return; 
-    }
 
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -42,19 +32,23 @@ class _RegisterPageState extends State<RegisterPage> {
         password: passwordController.text.trim(),
       );
 
+      
+
+
+
+      Navigator.pop(context);
+      print("Registered successfully!");
+      showDialog(context: context, builder: (context) => AlertDialog(title: const Text("Success"), content: Text("You've been successfully registered"),));
+      Navigator.pop(context);
+
       String uid = userCredential.user!.uid;
 
       await FirebaseFirestore.instance.collection('users').doc(uid).set({
-        'username': 'username',
-        'email': 'email',
+        'username': usernameController.text,
+        'email': emailController.text,
         'createdAt': FieldValue.serverTimestamp(),
       });
-
-
-
-      Navigator.pop(context); 
-      print("Registered successfully!");
-      showDialog(context: context, builder: (context) => AlertDialog(title: const Text("Success"), content: Text("You've been successfully registered"),));
+      
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context); 
       String errorMessage;
@@ -149,4 +143,4 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
-}
+} 
