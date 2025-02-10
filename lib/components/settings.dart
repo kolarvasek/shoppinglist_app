@@ -1,17 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shoppinglist/components/useraddbutton.dart';
 
-class Peopledrawer extends StatefulWidget {
-  const Peopledrawer({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<Peopledrawer> createState() => _PeopledrawerState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _PeopledrawerState extends State<Peopledrawer> {
-
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -30,16 +26,14 @@ class _PeopledrawerState extends State<Peopledrawer> {
                           Navigator.pop(context);
                         },
                         child: Icon(Icons.arrow_back_ios_outlined)),
-                    SizedBox(width: 90),
-                    Icon(Icons.people_alt_sharp, size: 40),
+                    Center(child: Icon(Icons.settings, size: 40)),
                     SizedBox(width: 20),
-                    Text('People',
+                    Text('Settings',
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.w500)),
                   ],
                 ),
                 Divider(color: Colors.black),
-                  Useraddbutton(),
               ],
             ),
           ),

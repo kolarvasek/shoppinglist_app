@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shoppinglist/auth/login_or_register.dart';
 import 'package:shoppinglist/components/peopleDrawer.dart';
+import 'package:shoppinglist/components/settings.dart';
 
 class Activedrawer extends StatefulWidget {
   const Activedrawer({super.key});
@@ -75,12 +76,10 @@ class _ActivedrawerState extends State<Activedrawer> {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                   onTap: () {
-                    if (context.mounted) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const Peopledrawer()));
-                    }
                   },
                 ),
                 ListTile(
@@ -89,7 +88,10 @@ class _ActivedrawerState extends State<Activedrawer> {
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                   onTap: () {
-                    /////
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SettingsPage()));
                   },
                 ),
                 Expanded(child: Container()),
