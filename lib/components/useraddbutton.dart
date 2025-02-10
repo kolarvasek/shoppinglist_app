@@ -9,17 +9,6 @@ class Useraddbutton extends StatefulWidget {
 
 final List emails = [];
 
-Future getUserDetail() async {
-  QuerySnapshot querySnapshot =
-      await FirebaseFirestore.instance.collection('users').get();
-  for (var doc in querySnapshot.docs) {
-    String? email = doc['email'];
-    if (email != null) {
-      emails.add(email);
-    }
-  }
-}
-
 Future setUser(String? newUser) async {
   String? uid = FirebaseAuth.instance.currentUser?.uid;
   await FirebaseFirestore.instance.collection('list').doc(uid).set(

@@ -23,7 +23,7 @@ class ItemList extends StatelessWidget {
             final item = items[index];
             return Dismissible(
               key: Key(item),
-              direction:DismissDirection.endToStart,
+              direction: DismissDirection.endToStart,
               onDismissed: (direction) {
                 FirebaseFirestore.instance.collection('list').doc(uid).update({
                   'items': FieldValue.arrayRemove([item]),

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Addbttn extends StatefulWidget {
-  String? uid = FirebaseAuth.instance.currentUser?.uid;
+  final String? uid = FirebaseAuth.instance.currentUser?.uid;
 
   Future addItem(String item) async {
     await FirebaseFirestore.instance.collection('list').doc(uid).set(
